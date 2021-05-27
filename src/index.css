@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.toast-success-container {
+  color: #FFFFFF !important;
+  border-radius: 8px !important;
+  background: #34A853 !important;
+  border: 1px solid #34A853 !important;
+  box-shadow: 0px 1px 5px rgba(248, 175, 175, 0.1) !important;
+}
+
+.toast-error-container {
+  color: #FFFFFF !important;
+  border-radius: 8px !important;
+  background: #b10236 !important;
+  border: 1px solid #b10236 !important;
+  box-shadow: 0px 1px 5px rgba(248, 175, 175, 0.1) !important;
+}

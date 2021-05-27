@@ -7,6 +7,7 @@ import { RootState } from '../../store';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { calculatePriceAsync } from '../../store/CartSlice';
 import CommonUtils from '../../util/CommonUtils';
+import { AddCircleRounded } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -19,10 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
         list: {
             width: "100%"
         },
-        checkOut : {
-            bottom :50,
-            position:"relative"
-        }
+        
     }),
 );
 
@@ -42,11 +40,16 @@ export default function CartItem(props: any) {
         dispatch(calculatePriceAsync(item.id, item.count, cartQuantity, "remove" ));
     }
 
+    const handleAdd = (item: any) => {
+        let cartQuantity = CommonUtils.getCartItemQty(items, item.id);
+        dispatch(calculatePriceAsync(item.id, item.count, cartQuantity, "add-single-unit" ));
+    }
+
 
     if (item) {
         return (
-            <div id={item.id}>
-                <div style={{ display: 'grid', gridTemplateColumns: '2fr 4fr 2fr 1fr' }}>
+            <div  style ={{width:"100%"}} id={item.id}>
+                <div style={{ display: 'grid', gridTemplateColumns: '2fr 4fr 2fr 1fr 1fr' }}>
                     <div>
                         <div>Item Code: {item.id}</div>
                         <div>Count : {item.count}</div>
@@ -54,9 +57,7 @@ export default function CartItem(props: any) {
                     <div></div>
                     <div style={{alignContent:"center"}}>$ {item.price}</div>
                     <div><IconButton onClick={() => handleRemove(item)} style={{ color: "#FFFF" }}><RemoveIcon /></IconButton></div>
-                </div>
-                <div id="check-out" className={classes.checkOut}>
-                    <Button>Check-Out</Button>
+                    <div><IconButton onClick={() => handleAdd(item)} style={{ color: "#FFFF" }}><AddCircleRounded /></IconButton></div>
                 </div>
             </div>
         );

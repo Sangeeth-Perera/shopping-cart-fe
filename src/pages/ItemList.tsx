@@ -1,6 +1,7 @@
 import { Checkbox, createStyles, FormControl, FormControlLabel, Grid, InputLabel, makeStyles, MenuItem, Select, Theme, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import ItemCard from "../components/itemCard/ItemCard";
+import ItemTableList from "../components/list/ItemTableList";
 import { getAllItems } from "../services/ItemList";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -59,8 +60,8 @@ const ItemList = (props: any) => {
                         value={itemType}
                         onChange={(e: any) => handleItemChange(e.target.value)}
                     >
-                        <MenuItem value="HC">Horseshoe</MenuItem>lllllll
-                        <MenuItem value="PEC">Penguin-ears</MenuItem>
+                        <MenuItem value="HC">Horseshoe(HC)</MenuItem>
+                        <MenuItem value="PEC">Penguin-ears(PEC)</MenuItem>
                         {/* <MenuItem value="All">All-not support</MenuItem> */}
                     </Select>
                 </FormControl>
@@ -90,14 +91,17 @@ const ItemList = (props: any) => {
                 />
             </Grid>
 
+            {viewMode == "cardMode" ? (
+                <React.Fragment>
+                    {itemList ?
+                        Object.keys(itemList).map(key => (
+                            <Grid key={key} item lg={3} sm={6}>
+                                <ItemCard itemCode={itemType} count={key} value={itemList[key]} />
+                            </Grid>
+                        )) : <Grid item lg={12} sm={12}> Loading...</Grid>}
+                </React.Fragment>) : (
 
-            {itemList ?
-                Object.keys(itemList).map(key => (
-                    <Grid key={key} item lg={3} sm={6}>
-                        <ItemCard itemCode={itemType} count={key} value={itemList[key]} />
-                    </Grid>
-                )) : <Grid item lg={12} sm={12}> Loading...</Grid>}
-
+                <ItemTableList itemCode={itemType} itemList = {itemList}/>)}
 
         </Grid>
     );

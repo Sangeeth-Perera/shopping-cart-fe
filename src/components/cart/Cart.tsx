@@ -95,13 +95,13 @@ export default function Cart(props: any) {
                     <Typography className = {classes.title}>Cart Information</Typography>
                 </Grid>
                 {cartItems.map((item: any) => (
-                    <React.Fragment>
+                    <React.Fragment key ={item.id} >
                         <CartItem key={item.id} id={item.id} item={item} />
                     </React.Fragment>
                 ))}
                 <Grid item lg={12} sm={12}>
                     <hr/>
-                <div style={{ display: 'grid', gridTemplateColumns: '3fr  2fr 1fr' }}>
+                <div style={{ width:"100%", display: 'grid', gridTemplateColumns: '4fr  1fr 1fr' }}>
                     <div>
                         <div>Total</div>
                     </div>

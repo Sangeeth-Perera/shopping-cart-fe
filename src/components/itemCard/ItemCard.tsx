@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 
 import { Button, Grid } from '@material-ui/core';
-import {  calculatePriceAsync } from '../../store/CartSlice';
+import { calculatePriceAsync } from '../../store/CartSlice';
 import { RootState } from '../../store';
 import CommonUtils from '../../util/CommonUtils';
 
@@ -38,8 +38,13 @@ const useStyles = makeStyles((theme: Theme) =>
     countFont: {
       fontSize: "42px"
     },
-  }),
-);
+    addCart :{
+
+    "&:hover": {
+      background: "#ba4a04",
+      font: "#FFF"
+    },
+  }}));
 
 export default function ItemCard(props: any) {
 
@@ -53,9 +58,7 @@ export default function ItemCard(props: any) {
   const handleAdd = (itemCode: any, count: any, value: any) => {
 
     let cartQuantity: number = 0;
-
     cartQuantity = CommonUtils.getCartItemQty(items, itemCode);
-
     dispatch(calculatePriceAsync(itemCode, parseInt(count), cartQuantity, "Add"));
   }
 
@@ -78,7 +81,7 @@ export default function ItemCard(props: any) {
       <CardActions disableSpacing>
         <Grid container>
           <Grid item lg={12} sm={12}>
-            <Button onClick={() => handleAdd(itemCode, count, value)}>Add to Cart</Button>
+            <Button className={classes.addCart} onClick={() => handleAdd(itemCode, count, value)}>Add to Cart</Button>
           </Grid>
         </Grid>
       </CardActions>

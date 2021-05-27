@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { AppThunk } from '.';
 import { getItemTotal } from '../services/ItemList';
 
@@ -46,6 +47,9 @@ export const calculatePriceAsync = (itemCode: string, quantity: number, cartQuan
         if (operator == 'remove') {
             quantityVar = cartQuantity - 1;
         }
+        else if (operator == 'add-single-unit') {
+            quantityVar = cartQuantity + 1
+        }
         else {
             quantityVar = cartQuantity + quantity;
         }
@@ -58,10 +62,12 @@ export const calculatePriceAsync = (itemCode: string, quantity: number, cartQuan
             }
             dispatch(addCartItem(itemObj));
             dispatch(calculateTotal());
+            if (operator == "Add") {
+                toast("Item Added to Cart", { className: "toast-success-container" });
+            }
         }
     } catch (error) {
-        console.log("error");
-        alert(error);
+        toast(error, { className: "toast-error-container" });
     }
 };
 
