@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import CartItem from "./CartItem";
-import { Grid, Typography } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
@@ -26,6 +26,12 @@ const useStyles = makeStyles((theme: Theme) =>
         title : {
             fontSize:"32px",
             padding: "20px 20px 20px 20px",
+        },
+        checkOut : {
+            color : "#FFFF",
+            marginTop:"100px",
+            alignSelf:"center",
+            backgroundColor : "#ba4a04",
         },
         modalPaper: {
             position: "absolute",
@@ -103,6 +109,12 @@ export default function Cart(props: any) {
                     <div></div>
                 </div>
                 </Grid>
+                <Grid container>
+                
+                </Grid>
+            </Grid>
+            <Grid item lg={12} sm={12}>
+                <Button onClick ={()=>alert("Not Implemented")}className={classes.checkOut}>Check-Out</Button>
             </Grid>
         </div>);
 

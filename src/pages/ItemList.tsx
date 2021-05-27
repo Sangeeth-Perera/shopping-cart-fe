@@ -1,6 +1,5 @@
 import { Checkbox, createStyles, FormControl, FormControlLabel, Grid, InputLabel, makeStyles, MenuItem, Select, Theme, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { isTemplateExpression } from "typescript";
 import ItemCard from "../components/itemCard/ItemCard";
 import { getAllItems } from "../services/ItemList";
 
@@ -21,7 +20,7 @@ const ItemList = (props: any) => {
 
     const [itemList, setItemList] = useState<any>();
     const [loading, setLoading] = useState(false);
-    const [viewMode, setViewMode] = React.useState<any>('');
+    const [viewMode, setViewMode] = React.useState<any>('cardMode');
     const [itemType, setItemType] = React.useState('HC');
 
 
@@ -44,9 +43,8 @@ const ItemList = (props: any) => {
 
 
     useEffect(() => {
-
         loadItemList(itemType);
-    }, [itemType])
+    }, [itemType]);
 
 
 
@@ -54,14 +52,14 @@ const ItemList = (props: any) => {
         <Grid container spacing={2}>
             <Grid item lg={6} sm={6}>
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-label">Item Type</InputLabel>
+                    <InputLabel id="item-type">Item Type</InputLabel>
                     <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
+                        labelId="item-type"
+                        id="item-type"
                         value={itemType}
                         onChange={(e: any) => handleItemChange(e.target.value)}
                     >
-                        <MenuItem value="HC">Horseshoe</MenuItem>
+                        <MenuItem value="HC">Horseshoe</MenuItem>lllllll
                         <MenuItem value="PEC">Penguin-ears</MenuItem>
                         {/* <MenuItem value="All">All-not support</MenuItem> */}
                     </Select>
@@ -83,8 +81,8 @@ const ItemList = (props: any) => {
                 <FormControlLabel
                     control={
                         <Checkbox
-                            checked={viewMode == "small"}
-                            onChange={() => setViewMode("small")}
+                            checked={viewMode == "cardMode"}
+                            onChange={() => setViewMode("cardMode")}
                             name="viewMode"
                         />
                     }
@@ -98,7 +96,9 @@ const ItemList = (props: any) => {
                     <Grid key={key} item lg={3} sm={6}>
                         <ItemCard itemCode={itemType} count={key} value={itemList[key]} />
                     </Grid>
-                )) : null}
+                )) : <Grid item lg={12} sm={12}> Loading...</Grid>}
+
+
         </Grid>
     );
 }

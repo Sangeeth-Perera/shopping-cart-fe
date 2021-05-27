@@ -69,7 +69,10 @@ export default function ItemCard(props: any) {
           {count}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          Price : $ {value}
+          Price : <b>$ {value}</b>
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          Item Code :  {itemCode}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

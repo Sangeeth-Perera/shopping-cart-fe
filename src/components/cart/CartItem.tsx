@@ -1,11 +1,11 @@
 import React from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
-import { Grid, IconButton, Typography } from '@material-ui/core';
+import { Button, IconButton, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import ClearIcon from '@material-ui/icons/Clear';
-import { calculatePriceAsync, removeItem } from '../../store/CartSlice';
+import RemoveIcon from '@material-ui/icons/Remove';
+import { calculatePriceAsync } from '../../store/CartSlice';
 import CommonUtils from '../../util/CommonUtils';
 
 
@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         list: {
             width: "100%"
+        },
+        checkOut : {
+            bottom :50,
+            position:"relative"
         }
     }),
 );
@@ -49,7 +53,10 @@ export default function CartItem(props: any) {
                     </div>
                     <div></div>
                     <div style={{alignContent:"center"}}>$ {item.price}</div>
-                    <div><IconButton onClick={() => handleRemove(item)} style={{ color: "#FFFF" }}><ClearIcon /></IconButton></div>
+                    <div><IconButton onClick={() => handleRemove(item)} style={{ color: "#FFFF" }}><RemoveIcon /></IconButton></div>
+                </div>
+                <div id="check-out" className={classes.checkOut}>
+                    <Button>Check-Out</Button>
                 </div>
             </div>
         );
