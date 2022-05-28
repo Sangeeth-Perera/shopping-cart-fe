@@ -22,8 +22,8 @@ const ItemList = (props: any) => {
     const [itemList, setItemList] = useState<any>();
     const [loading, setLoading] = useState(false);
     const [viewMode, setViewMode] = React.useState<any>('cardMode');
-    const [itemType, setItemType] = React.useState('HC');
-
+    const [itemType, setItemType] = React.useState('PEC');
+    const [itemType1, setItemType1] = React.useState('1');
 
     const loadItemList = async (itemType: string) => {
         try {
@@ -38,7 +38,7 @@ const ItemList = (props: any) => {
 
     }
 
-    const handleItemChange = async (value: any) => {
+    const handleItemChange = (value: any) => {
         setItemType(value);
     };
 
@@ -67,11 +67,30 @@ const ItemList = (props: any) => {
                 </FormControl>
             </Grid>
             <Grid item lg={6} sm={6}>
+                <FormControl className={classes.formControl}>
+                    <InputLabel id="item-type">Item Type</InputLabel>
+                    <Select
+                        labelId="item-type"
+                        id="item-type"
+                        value={itemType1}
+                        onChange={(e: any) => setItemType1(e.target.value)}
+                    >
+                        <MenuItem value="1">1</MenuItem>
+                        <MenuItem value="2">2</MenuItem>
+                        {/* <MenuItem value="All">All-not support</MenuItem> */}
+                    </Select>
+                </FormControl>
+            </Grid>
+            {itemType === 'PEC' && (
+                <Grid item lg={6} sm={6}>
+                <Typography variant='h1'>Sangeeth</Typography>
+           </Grid>)}
+            <Grid item lg={6} sm={6}>
                 <Typography>View Mode</Typography>
                 <FormControlLabel
                     control={
                         <Checkbox
-                            checked={viewMode == "listMode"}
+                            checked={viewMode === "listMode"}
                             onChange={() => setViewMode("listMode")}
                             name="viewMode"
 
@@ -82,7 +101,7 @@ const ItemList = (props: any) => {
                 <FormControlLabel
                     control={
                         <Checkbox
-                            checked={viewMode == "cardMode"}
+                            checked={viewMode === "cardMode"}
                             onChange={() => setViewMode("cardMode")}
                             name="viewMode"
                         />
@@ -91,7 +110,7 @@ const ItemList = (props: any) => {
                 />
             </Grid>
 
-            {viewMode == "cardMode" ? (
+            {viewMode === "cardMode" ? (
                 <React.Fragment>
                     {itemList ?
                         Object.keys(itemList).map(key => (

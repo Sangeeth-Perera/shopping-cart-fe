@@ -6,16 +6,23 @@ import { store } from './store';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './routes';
+
+
+
 
 function App() {
   return (
+    <Router>
     <div className="App">
       <Provider store={store}>
         <TopBar />
-        <ItemList />
+          <AppRoutes/>
         <ToastContainer autoClose={2000} position="bottom-right" />
       </Provider>
     </div>
+    </Router>
   );
 }
 

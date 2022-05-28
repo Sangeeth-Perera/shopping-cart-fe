@@ -28,13 +28,13 @@ export const Cart = createSlice({
             let itemStatus = 'new';
             if (state.items.length) {
                 state.items.forEach((item, index) => {
-                    if (item.id == action.payload.id) {
+                    if (item.id === action.payload.id) {
                         state.items[index] = action.payload;
                         itemStatus = "exist"
                     }
                 })
             }
-            if (itemStatus == "new") {
+            if (itemStatus === "new") {
                 state.items.push(action.payload);
             }
         },
@@ -44,10 +44,10 @@ export const Cart = createSlice({
 export const calculatePriceAsync = (itemCode: string, quantity: number, cartQuantity: number, operator: string): AppThunk => async dispatch => {
     try {
         let quantityVar: number;
-        if (operator == 'remove') {
+        if (operator === 'remove') {
             quantityVar = cartQuantity - 1;
         }
-        else if (operator == 'add-single-unit') {
+        else if (operator === 'add-single-unit') {
             quantityVar = cartQuantity + 1
         }
         else {
@@ -62,7 +62,7 @@ export const calculatePriceAsync = (itemCode: string, quantity: number, cartQuan
             }
             dispatch(addCartItem(itemObj));
             dispatch(calculateTotal());
-            if (operator == "Add") {
+            if (operator === "Add") {
                 toast("Item Added to Cart", { className: "toast-success-container" });
             }
         }
