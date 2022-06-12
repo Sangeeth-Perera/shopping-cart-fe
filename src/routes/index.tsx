@@ -1,9 +1,10 @@
 
 import { lazy, Suspense } from 'react';
 import {Route, Routes} from 'react-router-dom';
-import Dashboard from '../pages/Dashboard';
 
 const ItemList = lazy(() => import('../pages/ItemList'));
+const Dashboard = lazy(() => import('../pages/Dashboard'));
+
 
 const AppRoutes = () => {
     

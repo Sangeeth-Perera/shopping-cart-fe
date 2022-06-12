@@ -75,8 +75,12 @@ const useStyles = makeStyles((theme: Theme) =>
     
 );
 
+interface ICart {
+    modalOpen:boolean;
+    handleClose:()=>void;
+}
 
-export default function Cart(props: any) {
+export default function Cart(props: ICart) {
 
     const {
         modalOpen,
